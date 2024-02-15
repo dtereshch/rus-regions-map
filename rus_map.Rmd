@@ -10,9 +10,10 @@ output: github_document
 Для начала установим и загрузим пакеты, необходимые для пространственного анализа. В дальнейшем, чтобы не запутаться, я буду указывать в явном виде, команды из какого пакета я использую. 
 
 ```{r}
-library(tidyverse) # манипуляции с данными и визуализация
-library(geodata)   # для доступа к данным о границах
-library(sf)        # манипуляции с пространственными объектами
+library(tidyverse)    # манипуляции с данными и визуализация
+library(geodata)      # для доступа к данным о границах
+library(sf)           # манипуляции с пространственными объектами
+library(RColorBrewer) # цветовые схемы
 ```
 
 ## Пространственные данные
@@ -83,4 +84,19 @@ ggplot(rus_reg_full) +
   theme_void()
 ```
 
+Ещё можно по настраивать цветовые схемы: 
 
+```{r}
+ggplot(rus_reg_full) + 
+  geom_sf(aes(fill = population), col = "transparent") + 
+  coord_sf(datum = NA) + 
+  scale_fill_gradient2("Population") + 
+  theme_void()
+```
+```{r}
+ggplot(rus_reg_full) + 
+  geom_sf(aes(fill = population), col = "transparent") + 
+  coord_sf(datum = NA) + 
+  scale_fill_gradientn("Population", colors = brewer.pal(9, "YlOrRd")) + 
+  theme_void()
+```

@@ -11,7 +11,7 @@
 указывать в явном виде, команды из какого пакета я использую.
 
 ``` r
-library(tidyverse) # манипуляции с данными и визуализация
+library(tidyverse)    # манипуляции с данными и визуализация
 ```
 
     ## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
@@ -26,7 +26,7 @@ library(tidyverse) # манипуляции с данными и визуали�
     ## ℹ Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
 
 ``` r
-library(geodata)   # для доступа к данным о границах
+library(geodata)      # для доступа к данным о границах
 ```
 
     ## Загрузка требуемого пакета: terra
@@ -39,10 +39,14 @@ library(geodata)   # для доступа к данным о границах
     ##     extract
 
 ``` r
-library(sf)        # манипуляции с пространственными объектами
+library(sf)           # манипуляции с пространственными объектами
 ```
 
     ## Linking to GEOS 3.10.2, GDAL 3.4.1, PROJ 8.2.1; sf_use_s2() is TRUE
+
+``` r
+library(RColorBrewer) # цветовые схемы
+```
 
 ## Пространственные данные
 
@@ -180,3 +184,25 @@ ggplot(rus_reg_full) +
 ```
 
 ![](rus_map_files/figure-gfm/unnamed-chunk-9-1.png)<!-- -->
+
+Ещё можно по настраивать цветовые схемы:
+
+``` r
+ggplot(rus_reg_full) + 
+  geom_sf(aes(fill = population), col = "transparent") + 
+  coord_sf(datum = NA) + 
+  scale_fill_gradient2("Population") + 
+  theme_void()
+```
+
+![](rus_map_files/figure-gfm/unnamed-chunk-10-1.png)<!-- -->
+
+``` r
+ggplot(rus_reg_full) + 
+  geom_sf(aes(fill = population), col = "transparent") + 
+  coord_sf(datum = NA) + 
+  scale_fill_gradientn("Population", colors = brewer.pal(9, "YlOrRd")) + 
+  theme_void()
+```
+
+![](rus_map_files/figure-gfm/unnamed-chunk-11-1.png)<!-- -->
