@@ -12,39 +12,8 @@
 
 ``` r
 library(tidyverse)    # манипуляции с данными и визуализация
-```
-
-    ## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
-    ## ✔ dplyr     1.1.4     ✔ readr     2.1.4
-    ## ✔ forcats   1.0.0     ✔ stringr   1.5.1
-    ## ✔ ggplot2   3.4.4     ✔ tibble    3.2.1
-    ## ✔ lubridate 1.9.3     ✔ tidyr     1.3.0
-    ## ✔ purrr     1.0.2     
-    ## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-    ## ✖ dplyr::filter() masks stats::filter()
-    ## ✖ dplyr::lag()    masks stats::lag()
-    ## ℹ Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
-
-``` r
 library(geodata)      # для доступа к данным о границах
-```
-
-    ## Загрузка требуемого пакета: terra
-    ## terra 1.7.71
-    ## 
-    ## Присоединяю пакет: 'terra'
-    ## 
-    ## Следующий объект скрыт от 'package:tidyr':
-    ## 
-    ##     extract
-
-``` r
 library(sf)           # манипуляции с пространственными объектами
-```
-
-    ## Linking to GEOS 3.10.2, GDAL 3.4.1, PROJ 8.2.1; sf_use_s2() is TRUE
-
-``` r
 library(RColorBrewer) # цветовые схемы
 ```
 
@@ -185,7 +154,7 @@ ggplot(rus_reg_full) +
 
 ![](rus_map_files/figure-gfm/unnamed-chunk-9-1.png)<!-- -->
 
-Ещё можно по настраивать цветовые схемы:
+Ещё можно по настраивать цветовые схемы и поправлять прочие настройки:
 
 ``` r
 ggplot(rus_reg_full) + 
@@ -201,8 +170,9 @@ ggplot(rus_reg_full) +
 ggplot(rus_reg_full) + 
   geom_sf(aes(fill = population), col = "transparent") + 
   coord_sf(datum = NA) + 
-  scale_fill_gradientn("Population", colors = brewer.pal(9, "YlOrRd")) + 
-  theme_void()
+  scale_fill_gradientn("Население региона, тыс. чел.", colors = brewer.pal(9, "YlOrRd")) + 
+  theme_void(base_size = 12, base_family = "Times") + 
+  theme(legend.position = "bottom")
 ```
 
 ![](rus_map_files/figure-gfm/unnamed-chunk-11-1.png)<!-- -->

@@ -9,7 +9,7 @@ output: github_document
 
 Для начала установим и загрузим пакеты, необходимые для пространственного анализа. В дальнейшем, чтобы не запутаться, я буду указывать в явном виде, команды из какого пакета я использую. 
 
-```{r}
+```{r, message=FALSE}
 library(tidyverse)    # манипуляции с данными и визуализация
 library(geodata)      # для доступа к данным о границах
 library(sf)           # манипуляции с пространственными объектами
@@ -84,7 +84,7 @@ ggplot(rus_reg_full) +
   theme_void()
 ```
 
-Ещё можно по настраивать цветовые схемы: 
+Ещё можно по настраивать цветовые схемы и поправлять прочие настройки: 
 
 ```{r}
 ggplot(rus_reg_full) + 
@@ -97,6 +97,7 @@ ggplot(rus_reg_full) +
 ggplot(rus_reg_full) + 
   geom_sf(aes(fill = population), col = "transparent") + 
   coord_sf(datum = NA) + 
-  scale_fill_gradientn("Population", colors = brewer.pal(9, "YlOrRd")) + 
-  theme_void()
+  scale_fill_gradientn("Население региона, тыс. чел.", colors = brewer.pal(9, "YlOrRd")) + 
+  theme_void(base_size = 12, base_family = "Times") + 
+  theme(legend.position = "bottom")
 ```
