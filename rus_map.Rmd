@@ -93,11 +93,21 @@ ggplot(rus_reg_full) +
   scale_fill_gradient2("Population") + 
   theme_void()
 ```
+
 ```{r}
 ggplot(rus_reg_full) + 
   geom_sf(aes(fill = population), col = "transparent") + 
   coord_sf(datum = NA) + 
   scale_fill_gradientn("Население региона, тыс. чел.", colors = brewer.pal(9, "YlOrRd")) + 
+  theme_void(base_size = 12, base_family = "Times") + 
+  theme(legend.position = "bottom")
+```
+
+```{r}
+ggplot(rus_reg_full) + 
+  geom_sf(aes(fill = population), col = "grey30") + 
+  coord_sf(datum = NA) + 
+  scale_fill_gradient2("Население региона, тыс. чел.", low = "white", high = 'black') + 
   theme_void(base_size = 12, base_family = "Times") + 
   theme(legend.position = "bottom")
 ```
