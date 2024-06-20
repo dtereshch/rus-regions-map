@@ -111,3 +111,12 @@ ggplot(rus_reg_full) +
   theme_void(base_size = 12, base_family = "Times") + 
   theme(legend.position = "bottom")
 ```
+
+```{r}
+ggplot(rus_reg_full) +
+  geom_sf(aes(fill = cut(population, quantile(population), include.lowest = TRUE, dig.lab = 5)), col = "grey30") +
+  coord_sf(datum = NA) +
+  scale_fill_brewer("Население региона, тыс. чел.", palette = "Greens") +
+  theme_void(base_size = 12, base_family = "Times") +
+  theme(legend.position = "left")
+```

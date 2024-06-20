@@ -187,3 +187,14 @@ ggplot(rus_reg_full) +
 ```
 
 ![](rus_map_files/figure-gfm/unnamed-chunk-12-1.png)<!-- -->
+
+``` r
+ggplot(rus_reg_full) +
+  geom_sf(aes(fill = cut(population, quantile(population), include.lowest = TRUE, dig.lab = 5)), col = "grey30") +
+  coord_sf(datum = NA) +
+  scale_fill_brewer("Население региона, тыс. чел.", palette = "Greens") +
+  theme_void(base_size = 12, base_family = "Times") +
+  theme(legend.position = "left")
+```
+
+![](rus_map_files/figure-gfm/unnamed-chunk-13-1.png)<!-- -->
